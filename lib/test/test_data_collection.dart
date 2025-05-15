@@ -1,0 +1,316 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+class EmotionLogForm extends StatefulWidget {
+  final String userId;
+
+  const EmotionLogForm({super.key, required this.userId});
+
+  @override
+  State<EmotionLogForm> createState() => _EmotionLogFormState();
+}
+
+class _EmotionLogFormState extends State<EmotionLogForm> {
+  final _formKey = GlobalKey<FormState>();
+
+  final _actionController = TextEditingController();
+  final _beforeEmotionController = TextEditingController();
+  final _afterEmotionController = TextEditingController();
+
+  double _beforeSud = 5;
+  double _afterSud = 5;
+  double _pleasure = 5;
+  double _mastery = 5;
+
+  void _submitForm() async {
+    if (_formKey.currentState!.validate()) {
+      final now = DateTime.now();
+      final formattedTime = DateFormat('yyyy-MM-dd HH:mm').format(now);
+
+      final log = EmotionBehaviorLog(
+        time: formattedTime,
+        beforeEmotion: _beforeEmotionController.text,
+        beforeSud: _beforeSud,
+        action: _actionController.text,
+        afterEmotion: _afterEmotionController.text,
+        afterSud: _afterSud,
+        pleasure: _pleasure,
+        mastery: _mastery,
+      );
+
+      await FirebaseFirestore.instance
+          .collection('test')
+          .doc(widget.userId)
+          .collection('user_data_collection')
+          .add(log.toJson());
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('기록이 저장되었습니다.')),
+      );
+
+      _formKey.currentState!.reset();
+      _actionController.clear();
+      _beforeEmotionController.clear();
+      _afterEmotionController.clear();
+      setState(() {
+        _beforeSud = _afterSud = _pleasure = _mastery = 5;
+      });
+    }
+  }
+
+  @override
+  @override
+Widget build(BuildContext context) {
+  final labelStyle = const TextStyle(fontWeight: FontWeight.bold, fontSize: 16);
+  return Scaffold(
+    appBar: AppBar(title: const Text("감정-행동 기록")),
+    body: Padding(
+      padding: const EdgeInsets.all(20),
+      child: Form(
+        key: _formKey,
+        child: ListView(
+          children: [
+            Card(
+            elevation: 2,
+            color: Colors.indigo.shade50,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  Text(
+                    "참여 안내문",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.indigo),
+                  ),
+                  SizedBox(height: 8),
+                  Text("안녕하세요. 연구에 참여해주셔서 진심으로 감사드립니다.\n본 연구는 일상 속 감정 변화와 행동 간의 연관성을 분석하여, 개인 맞춤형 정신건강 관리 시스템을 개발하는 것을 목표로 합니다."),
+                  SizedBox(height: 8),
+                  Text(
+                    "사용자의 감정 상태와 일상 속 행동 기록을 통해, 감정 전이 흐름과 회복에 도움이 되는 행동 경로를 파악하고자 합니다.",
+                    style: TextStyle(fontWeight: FontWeight.bold),),
+                  SizedBox(height: 8),
+                  Text("모든 데이터는 익명화되어 저장되며, 외부에 공개되지 않습니다."),
+                  Text("수집된 정보는 연구 목적 이외에는 절대 사용되지 않습니다."),
+                ],
+              ),
+            ),
+          ),
+            Card(
+            elevation: 2,
+            color: Colors.indigo.shade50,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  Text(
+                    "기록 입력 가이드",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.indigo),
+                  ),
+                  SizedBox(height: 8),
+                  Text("매일 1회 이상 (최소 한시간 간격), 간단한 양식에 따라 다음 정보를 입력해 주세요"),
+                  SizedBox(height: 8),
+                  Text("1. 현재 느끼는 감정과 SUD(불안 강도)를 기록합니다."),
+                  Text("2. 수행할 활동을 입력합니다. (예: 운동, 산책, 대화 등)"),
+                  Text("3. 활동 후 감정 변화와 SUD 점수를 기록합니다."),
+                  Text("4. 해당 활동에서 느낀 즐거움(Pleasure)과 숙달감(Mastery)을 입력합니다."),
+                ],
+              ),
+            ),
+          ),
+            Card(
+              elevation: 2,
+              color: Colors.indigo.shade50,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text("기록 지표 설명",
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.indigo)),
+                    SizedBox(height: 8),
+                    Text("• SUD: 현재 느끼는 불안/스트레스 정도 (0~10)"),
+                    Text("• Pleasure: 활동에서 느낀 즐거움 정도 (0~10)"),
+                    Text("• Mastery: 활동 수행에 대한 숙달감 (0~10)"),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 24),
+
+            Text("현재 감정 상태", style: labelStyle),
+            const SizedBox(height: 4),
+            TextFormField(
+              controller: _beforeEmotionController,
+              decoration: const InputDecoration(
+                hintText: "예: 불안함, 초조함 등",
+                border: OutlineInputBorder(),
+              ),
+              validator: (value) => value == null || value.isEmpty ? "입력해주세요" : null,
+            ),
+            const SizedBox(height: 16),
+            Text("현재 SUD: ${_beforeSud.toStringAsFixed(1)}", style: labelStyle),
+            SliderTheme(
+              data: SliderTheme.of(context).copyWith(
+                activeTrackColor: Colors.indigo,
+                thumbColor: Colors.indigo,
+              ),
+              child: Slider(
+                value: _beforeSud,
+                min: 0,
+                max: 10,
+                divisions: 20,
+                label: _beforeSud.toStringAsFixed(1),
+                onChanged: (value) => setState(() => _beforeSud = value),
+              ),
+            ),
+            
+            const Divider(thickness: 1, color: Colors.grey),
+            
+            const SizedBox(height: 16),
+            Text("수행할 행동", style: labelStyle),
+            const SizedBox(height: 4),
+            TextFormField(
+              controller: _actionController,
+              decoration: const InputDecoration(
+                hintText: "예: 발표, 운동, 산책 등",
+                border: OutlineInputBorder(),
+              ),
+              validator: (value) => value == null || value.isEmpty ? "입력해주세요" : null,
+            ),
+
+            const SizedBox(height: 16),
+            Text("수행 후 감정 상태", style: labelStyle),
+            const SizedBox(height: 4),
+            TextFormField(
+              controller: _afterEmotionController,
+              decoration: const InputDecoration(
+                hintText: "예: 편안함, 안정됨, 불안함 등",
+                border: OutlineInputBorder(),
+              ),
+              validator: (value) => value == null || value.isEmpty ? "입력해주세요" : null,
+            ),
+            const SizedBox(height: 16),
+            Text("수행 후 SUD: ${_afterSud.toStringAsFixed(1)}", style: labelStyle),
+            SliderTheme(
+              data: SliderTheme.of(context).copyWith(
+                activeTrackColor: Colors.indigo,
+                thumbColor: Colors.indigo,
+              ),
+              child: Slider(
+                value: _afterSud,
+                min: 0,
+                max: 10,
+                divisions: 20,
+                label: _afterSud.toStringAsFixed(1),
+                onChanged: (value) => setState(() => _afterSud = value),
+              ),
+            ),
+
+            const SizedBox(height: 16),
+            Text("Pleasure: ${_pleasure.toStringAsFixed(1)}", style: labelStyle),
+            Slider(
+              value: _pleasure,
+              min: 0,
+              max: 10,
+              divisions: 20,
+              label: _pleasure.toStringAsFixed(1),
+              activeColor: Colors.indigo,
+              onChanged: (value) => setState(() => _pleasure = value),
+            ),
+
+            const SizedBox(height: 16),
+            Text("Mastery: ${_mastery.toStringAsFixed(1)}", style: labelStyle),
+            Slider(
+              value: _mastery,
+              min: 0,
+              max: 10,
+              divisions: 20,
+              label: _mastery.toStringAsFixed(1),
+              activeColor: Colors.indigo,
+              onChanged: (value) => setState(() => _mastery = value),
+            ),
+
+            const SizedBox(height: 32),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton.icon(
+                label:  Text("기록 저장", style: TextStyle(fontSize: 16, color: Colors.white)),
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  backgroundColor: Colors.indigo,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                onPressed: _submitForm,
+              ),
+            ),
+          ],
+        ),
+      ),
+      )
+    );
+  }
+}
+
+class EmotionBehaviorLog {
+  final String time;
+  final String beforeEmotion;
+  final double beforeSud;
+  final String action;
+  final String afterEmotion;
+  final double afterSud;
+  final double pleasure;
+  final double mastery;
+
+  EmotionBehaviorLog({
+    required this.time,
+    required this.beforeEmotion,
+    required this.beforeSud,
+    required this.action,
+    required this.afterEmotion,
+    required this.afterSud,
+    required this.pleasure,
+    required this.mastery,
+  });
+
+  Map<String, dynamic> toJson() {
+    return {
+      'time': time,
+      'beforeEmotion': beforeEmotion,
+      'beforeSud': beforeSud,
+      'action': action,
+      'afterEmotion': afterEmotion,
+      'afterSud': afterSud,
+      'pleasure': pleasure,
+      'mastery': mastery,
+    };
+  }
+
+  factory EmotionBehaviorLog.fromJson(Map<String, dynamic> json) {
+    return EmotionBehaviorLog(
+      time: json['time'] ?? '',
+      beforeEmotion: json['beforeEmotion'] ?? '',
+      beforeSud: (json['beforeSud'] ?? 0).toDouble(),
+      action: json['action'] ?? '',
+      afterEmotion: json['afterEmotion'] ?? '',
+      afterSud: (json['afterSud'] ?? 0).toDouble(),
+      pleasure: (json['pleasure'] ?? 0).toDouble(),
+      mastery: (json['mastery'] ?? 0).toDouble(),
+    );
+  }
+}
