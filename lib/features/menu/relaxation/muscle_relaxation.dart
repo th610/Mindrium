@@ -26,8 +26,8 @@ class _MuscleRelaxationPageState extends State<MuscleRelaxationPage>
     {'title': '8. 얼굴', 'description': '입술을 다물고 얼굴 전체에 힘을 주세요.'},
   ];
 
-  final int contractDuration = 2;
-  final int relaxDuration = 3;
+  final int contractDuration = 4;
+  final int relaxDuration = 6;
   final int prepDuration = 5;
 
   int _currentStep = 0;

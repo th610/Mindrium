@@ -28,9 +28,9 @@ class RelaxationScreen extends StatelessWidget {
                     Text('호흡 명상 안내', style: TextStyle(fontSize: AppSizes.fontSize, fontWeight: FontWeight.bold)),
                     Text('편안한 자세로 천천히 숨을 들이쉬고 내쉬며, 호흡의 리듬에 집중해봅니다.'),
                     SizedBox(height: AppSizes.space),
-                    Text('60초간 진행됩니다. \n5초간 들이쉬고, 5초간 내쉬는 호흡을 반복하며 마음을 차분하게 가라앉혀 보세요.\n'),
+                    Text('60초간 진행됩니다. \n4초간 들이쉬고, 6초간 내쉬는 호흡을 반복하며 마음을 차분하게 가라앉혀 보세요.\n'),
                     Text('점진적 근육 이완 안내', style: TextStyle(fontSize: AppSizes.fontSize, fontWeight: FontWeight.bold)),
-                    Text('각 부위를 5초간 긴장 → 10초간 이완하세요.'),
+                    Text('각 부위를 4초간 긴장 → 6초간 이완하세요.'),
                     SizedBox(height: AppSizes.space),
                     Text('1. 팔꿈치 아래 \n주먹을 꼭 쥐고 몸 쪽으로 손목을 굽혀 팔꿈치 아랫부분을 긴장시키세요.'),
                     SizedBox(height: AppSizes.space),
@@ -101,7 +101,9 @@ class RelaxationScreen extends StatelessWidget {
                   const Text('호흡과 감각에 집중하세요.', style: TextStyle(color: Colors.black, fontSize: AppSizes.fontSize)),
                   const SizedBox(height: AppSizes.space),
                   const Text('호흡이 안정되면, 몸의 각 부위를 차례로 긴장시켰다가 이완해봅니다.',
-                      style: TextStyle(color: Colors.black, fontSize: AppSizes.fontSize)),
+                      style: TextStyle(color: Colors.black, fontSize: AppSizes.fontSize)
+                  ),
+                  const Text('약 3분 소요됩니다.', style: TextStyle(color: Colors.black, fontSize: AppSizes.fontSize)),
                   Align(
                     alignment: Alignment.centerRight,
                     child: TextButton(

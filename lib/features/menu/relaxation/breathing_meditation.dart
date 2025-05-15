@@ -13,8 +13,8 @@ class BreathingMeditationPage extends StatefulWidget {
 
 class _BreathingMeditationPageState extends State<BreathingMeditationPage>
     with SingleTickerProviderStateMixin {
-  static const int inhaleDuration = 2;
-  static const int exhaleDuration = 3;
+  static const int inhaleDuration = 4;
+  static const int exhaleDuration = 6;
   static const int prepDuration = 5;
   static const int totalSeconds = 10;
 
