@@ -106,18 +106,19 @@ class TreatmentScreen extends StatelessWidget {
 
           // 주차별 카드 리스트
           ...List.generate(weekContents.length, (index) {
-            final isEnabled = index < week;
+            //final isEnabled = index < week;
             return Column(
               children: [
                 ActivityCard(
                   icon: Icons.lightbulb_outline,
                   title: weekContents[index]['title']!,
                   subtitle: weekContents[index]['subtitle']!,
-                  enabled: isEnabled,
+                  enabled: true, //isEnabled,
                   titleFontWeight: FontWeight.bold,
-                  onTap: isEnabled && index < weekScreens.length
+                  onTap: () => Navigator.pushNamed(context, '/week${index + 1}')
+                    /*isEnabled && index < weekScreens.length
                       ? () => Navigator.pushNamed(context, '/week${index + 1}')
-                      : null,
+                      : null,*/
                 ),
                 const SizedBox(height: AppSizes.space),
               ],
