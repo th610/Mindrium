@@ -45,8 +45,21 @@ class _EmotionLogFormState extends State<EmotionLogForm> {
           .collection('user_data_collection')
           .add(log.toJson());
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('기록이 저장되었습니다.')),
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          title: const Text("감사합니다!", style: TextStyle(fontWeight: FontWeight.bold)),
+          content: const Text(
+            "기록이 성공적으로 저장되었습니다.\n\n여러분의 소중한 기록은 감정 흐름을 이해하고 더 나은 정신건강 기술을 개발하는 데 큰 도움이 됩니다.",
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text("확인", style: TextStyle(color: Colors.indigo)),
+            ),
+          ],
+        ),
       );
 
       _formKey.currentState!.reset();
@@ -87,14 +100,13 @@ Widget build(BuildContext context) {
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.indigo),
                   ),
                   SizedBox(height: 8),
-                  Text("안녕하세요. 연구에 참여해주셔서 진심으로 감사드립니다.\n본 연구는 일상 속 감정 변화와 행동 간의 연관성을 분석하여, 개인 맞춤형 정신건강 관리 시스템을 개발하는 것을 목표로 합니다."),
+                  Text("안녕하세요!. 본 연구에 관심을 가지고 참여해주셔서 진심으로 감사드립니다.\n본 연구는 일상 속 감정 변화와 행동 간의 관계를 분석하여, 개인에게 도움이 되는 맞춤형 정신건강 관리 시스템을 개발하는 것을 목표로 합니다."),
                   SizedBox(height: 8),
                   Text(
-                    "사용자의 감정 상태와 일상 속 행동 기록을 통해, 감정 전이 흐름과 회복에 도움이 되는 행동 경로를 파악하고자 합니다.",
+                    "특히, 여러분의 감정 상태와 일상 속 행동 기록을 통해 감정 전이의 흐름을 파악하고, 회복에 도움이 되는 행동 경로를 찾고자 합니다.",
                     style: TextStyle(fontWeight: FontWeight.bold),),
                   SizedBox(height: 8),
-                  Text("모든 데이터는 익명화되어 저장되며, 외부에 공개되지 않습니다."),
-                  Text("수집된 정보는 연구 목적 이외에는 절대 사용되지 않습니다."),
+                  Text("모든 데이터는 익명으로 안전하게 저장되며, 연구 목적 외에는 절대 사용되지 않습니다."),
                 ],
               ),
             ),
@@ -115,11 +127,11 @@ Widget build(BuildContext context) {
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.indigo),
                   ),
                   SizedBox(height: 8),
-                  Text("매일 1회 이상 (최소 한시간 간격), 간단한 양식에 따라 다음 정보를 입력해 주세요"),
+                  Text("하루 1번 이상 (최소 한시간 간격), 간단한 양식에 따라 다음 정보를 입력해 주세요"),
                   SizedBox(height: 8),
-                  Text("1. 현재 느끼는 감정과 SUD(불안 강도)를 기록합니다."),
-                  Text("2. 수행할 활동을 입력합니다. (예: 운동, 산책, 대화 등)"),
-                  Text("3. 활동 후 감정 변화와 SUD 점수를 기록합니다."),
+                  Text("1. 현재 느끼는 감정과 SUD(불안 강도)를 기록합니다. (예: 긴장됨, SUD 7점)"),
+                  Text("2. 수행할 활동을 입력합니다. (예: 운동, 산책, 독서 등)"),
+                  Text("3. 활동 이후의 감정 변화와 SUD 점수를 기록합니다."),
                   Text("4. 해당 활동에서 느낀 즐거움(Pleasure)과 숙달감(Mastery)을 입력합니다."),
                 ],
               ),
