@@ -47,18 +47,20 @@ class HabitProvider extends ChangeNotifier {
 
     final doc = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
     final habits = List<String>.from(doc.data()?['selectedHabits'] ?? []);
-    final iconDataMap = Map<String, dynamic>.from(doc.data()?['habitIcons'] ?? {});
+    //final iconDataMap = Map<String, dynamic>.from(doc.data()?['habitIcons'] ?? {});
 
     _selectedHabits.clear();
     _habitIcons.clear();
 
     _selectedHabits.addAll(habits);
+    /*
     iconDataMap.forEach((key, value) {
       _habitIcons[key] = IconData(
         value['codePoint'],
         fontFamily: value['fontFamily'],
       );
     });
+    */
 
     notifyListeners();
   }
