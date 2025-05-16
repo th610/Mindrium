@@ -129,10 +129,27 @@ Widget build(BuildContext context) {
                   SizedBox(height: 8),
                   Text("하루 1번 이상 (최소 한시간 간격), 간단한 양식에 따라 다음 정보를 입력해 주세요"),
                   SizedBox(height: 8),
-                  Text("1. 현재 느끼는 감정과 SUD(불안 강도)를 기록합니다. (예: 긴장됨, SUD 7점)"),
-                  Text("2. 현재 감정 상태로 수행할 활동을 입력합니다. (예: 운동, 산책, 독서 등)"),
-                  Text("3. 활동 이후의 감정 변화와 SUD 점수를 기록합니다. (감정의 변화가 없을시 동일한 감정을 입력해주세요.)"),
-                  Text("4. 해당 활동에서 느낀 즐거움(Pleasure)과 숙달감(Mastery)을 입력합니다."),
+                  Text(
+                    "1. 지금 느끼는 감정과 현재 SUD점수를 기록합니다.",
+                    style: TextStyle(fontWeight: FontWeight.bold)
+                  ),
+                  Text("예: 긴장됨, SUD 7점 (0~10점 중, 10에 가까울수록 불안이 큼)"),
+                  Text(
+                    "2. 현재 감정 상태로 수행할 활동을 입력합니다.",
+                    style: TextStyle(fontWeight: FontWeight.bold)
+                  ),
+                  Text('예: 산책하기, 음악 듣기, 청소하기 등'),
+                  Text(
+                    "3. 활동 이후, 감정이 어떻게 변했는지와 SUD 점수를 기록합니다.",
+                    style: TextStyle(fontWeight: FontWeight.bold)
+                  ),
+                  Text("예: 안정됨, SUD 3점"),
+                  Text("(감정이 바뀌지 않았다면, 그대로 적어주세요.)"),
+                  Text(
+                    "4. 활동을 하며 얼마나 즐거웠는지(Pleasure), 얼마나 잘 해냈다고 느꼈는지(Mastery)를 점수로 입력해주세요.",
+                    style: TextStyle(fontWeight: FontWeight.bold)
+                  ),
+                  Text("예: Pleasure 6wja / Mastery 5점 (0~10점 중)"),
                 ],
               ),
             ),
