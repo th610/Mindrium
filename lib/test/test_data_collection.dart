@@ -127,7 +127,7 @@ Widget build(BuildContext context) {
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.indigo),
                   ),
                   SizedBox(height: 8),
-                  Text("하루 1번 이상 (최소 한시간 간격), 간단한 양식에 따라 다음 정보를 입력해 주세요"),
+                  Text("하루 1번 이상 (최소 한시간 간격), 간단한 양식에 따라 다음 정보를 입력해 주세요. \n감정과 수행할 행동은 한 가지만 입력해 주세요"),
                   SizedBox(height: 8),
                   Text(
                     "1. 지금 느끼는 감정과 현재 SUD점수를 기록합니다.",

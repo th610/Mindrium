@@ -37,16 +37,18 @@ class _TutorialScreenState extends State<TutorialScreen> {
     if (_currentIndex < tutorialPages.length - 1) {
       _controller.nextPage(duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
     } else {
-      final hasSurvey = await UserDatabase.hasCompletedSurvey();
+      //final hasSurvey = await UserDatabase.hasCompletedSurvey();
       if (!mounted) return;
-      Navigator.pushReplacementNamed(context, hasSurvey ? '/home' : '/pretest');
+      Navigator.pushReplacementNamed(context, '/home');
+      //Navigator.pushReplacementNamed(context, hasSurvey ? '/home' : '/pretest');
     }
   }
 
   Future<void> _skipTutorial() async {
-    final hasSurvey = await UserDatabase.hasCompletedSurvey();
+    //final hasSurvey = await UserDatabase.hasCompletedSurvey();
     if (!mounted) return;
-    Navigator.pushReplacementNamed(context, hasSurvey ? '/home' : '/pretest');
+    Navigator.pushReplacementNamed(context, '/home');
+    //Navigator.pushReplacementNamed(context, hasSurvey ? '/home' : '/pretest');
   }
 
   @override
