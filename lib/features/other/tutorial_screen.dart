@@ -36,6 +36,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
     if (_currentIndex < tutorialPages.length - 1) {
       _controller.nextPage(duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
     } else {
+      //TODO
       //final hasSurvey = await UserDatabase.hasCompletedSurvey();
       if (!mounted) return;
       Navigator.pushReplacementNamed(context, '/home');
@@ -44,6 +45,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
   }
 
   Future<void> _skipTutorial() async {
+    //TODO
     //final hasSurvey = await UserDatabase.hasCompletedSurvey();
     if (!mounted) return;
     Navigator.pushReplacementNamed(context, '/home');
