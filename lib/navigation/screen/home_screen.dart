@@ -212,7 +212,7 @@ class _HomeScreenState extends State<HomeScreen> {
 //데이터 수집
   Widget _dataCollection(BuildContext context, String userId) {
     return ActivityCard(
-      title: '감정-행동 기록',
+      title: '설문: 감정-행동 기록',
       icon: Icons.description,
       enabled: true,
       onTap: () {
