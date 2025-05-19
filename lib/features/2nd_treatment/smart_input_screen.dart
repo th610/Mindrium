@@ -286,6 +286,7 @@ class _SmartInputScreenState extends State<SmartInputScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.grey100,
       appBar: const CustomAppBar(title: '2주차 - SMART 목표 설정'),
       body: SafeArea(
         child: SingleChildScrollView(

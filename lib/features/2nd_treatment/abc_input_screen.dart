@@ -9,14 +9,14 @@ import 'smart_input_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class Week2Screen extends StatefulWidget {
-  const Week2Screen({super.key});
+class AbcInputScreen extends StatefulWidget {
+  const AbcInputScreen({super.key});
 
   @override
-  State<Week2Screen> createState() => _Week2ScreenState();
+  State<AbcInputScreen> createState() => _AbcInputScreenState();
 }
 
-class _Week2ScreenState extends State<Week2Screen> {
+class _AbcInputScreenState extends State<AbcInputScreen> {
   final _aController = TextEditingController();
   final _bController = TextEditingController();
   final _cController = TextEditingController();
@@ -1056,6 +1056,7 @@ class _Week2ScreenState extends State<Week2Screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.grey100,
       appBar: CustomAppBar(title: '2주차 - ABC 모델'),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -1065,11 +1066,8 @@ class _Week2ScreenState extends State<Week2Screen> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(bottom: 16.0),
-                /*TODO:child: Image.asset(
-                  'assets/image/ABCmodel.png',
-                  width: double.infinity,
-                  fit: BoxFit.fitWidth,
-                ),*/
+                //TODO:child: 
+                  //Image.asset('assets/image/ABCmodel.png',width: double.infinity,fit: BoxFit.fitWidth,),
               ),
               _buildStepIndicator(),
               const SizedBox(height: 32),
@@ -1324,6 +1322,7 @@ class _AbcVisualizationScreenState extends State<AbcVisualizationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.grey100,
       appBar: CustomAppBar(title: '2주차 - ABC 모델'),
       resizeToAvoidBottomInset: true,
       body: SafeArea(

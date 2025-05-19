@@ -4,8 +4,10 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 //treatment
 import 'package:gad_app_team/features/1st_treatment/week1_screen.dart'; 
-//import 'package:gad_app_team/features/2nd_treatment/week2_screen.dart';
+
+import 'package:gad_app_team/features/2nd_treatment/week2_screen.dart';
 import 'package:gad_app_team/features/2nd_treatment/abc_input_screen.dart';
+
 import 'package:gad_app_team/features/3rd_treatment/week3_screen.dart';  
 import 'package:gad_app_team/features/3rd_treatment/habit_1.dart'; 
 import 'package:gad_app_team/features/3rd_treatment/habit_2.dart'; 
@@ -119,10 +121,11 @@ class MyApp extends StatelessWidget {
 
         //treatment
         '/week1': (context) => const Week1Screen(),
+        
         '/week2': (context) => const Week2Screen(),
+        '/abc': (context) => const AbcInputScreen(),
+        
         '/week3': (context) => const Week3Screen(),
-
-        //habit
         '/habit1': (context) => Habit1Page(),
         '/habit2': (context) => Habit2Page(),
         '/habit3': (context) => Habit3Page(),
