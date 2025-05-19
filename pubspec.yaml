@@ -43,14 +43,14 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-      #- assets/image/logo.png
-      #- assets/image/anxiety_character.png
-      #- assets/image/photo.png
-      #- assets/image/ranking_illustration.png
-      #- assets/image/otter_sushi.png
-      #- assets/image/completion.png
-      #- assets/image/weekly_diary.png
-      #- assets/image/daily_diary.png 
+      - image/logo.png
+      - image/anxiety_character.png
+      - image/photo.png
+      - image/ranking_illustration.png
+      - image/otter_sushi.png
+      - image/completion.png
+      - image/weekly_diary.png
+      - image/daily_diary.png 
 
       # 1주차 part1
       - assets/education_data/week1_part1_1.json
