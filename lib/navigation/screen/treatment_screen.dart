@@ -7,7 +7,8 @@ import 'package:gad_app_team/widgets/card_container.dart';
 import 'package:gad_app_team/data/daycounter.dart';
 
 import 'package:gad_app_team/features/1st_treatment/week1_screen.dart';
-import 'package:gad_app_team/features/2nd_treatment/week2_screen.dart';
+//import 'package:gad_app_team/features/2nd_treatment/week2_screen.dart';
+import 'package:gad_app_team/features/2nd_treatment/abc_input_screen.dart';
 import 'package:gad_app_team/features/3rd_treatment/week3_screen.dart';
 
 /// Mindrium 치료 프로그램 메인 화면
@@ -73,6 +74,7 @@ class TreatmentScreen extends StatelessWidget {
     final List<Widget> weekScreens = const [
       Week1Screen(),
       Week2Screen(),
+      //AbcInputScreen(),
       Week3Screen(),
       // ...
     ];
