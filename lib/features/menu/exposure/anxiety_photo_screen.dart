@@ -159,7 +159,9 @@ class _AnxietyPhotoScreenState extends State<AnxietyPhotoScreen> {
         child: ListView(
           padding: const EdgeInsets.all(AppSizes.padding),
           children: [
-            const ImageBanner(imageSource: 'assets/image/photo.png'),
+            const ImageBanner(
+              //TODO:imageSource: 'assets/image/photo.png'
+              ),
                   Wrap(
                     crossAxisAlignment: WrapCrossAlignment.center,
                     alignment: WrapAlignment.center,

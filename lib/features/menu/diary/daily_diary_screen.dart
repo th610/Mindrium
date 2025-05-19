@@ -225,12 +225,12 @@ class _DailyDiaryScreenState extends State<DailyDiaryScreen> {
                   },
                   child: _photoPath == null
                       ? ImageBanner(
-                          imageSource: 'assets/image/daily_diary.png',
+                          //TODO:imageSource: 'assets/image/daily_diary.png',
                           height: MediaQuery.of(context).size.width * 9 / 16,
                           fit: BoxFit.cover,
                         )
                       : ImageBanner(
-                          imageSource: _photoPath!,
+                          //TODO:imageSource: _photoPath!,
                           height: MediaQuery.of(context).size.width * 9 / 16,
                           fit: BoxFit.contain,
                         ),

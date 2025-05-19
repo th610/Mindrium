@@ -205,7 +205,9 @@ class _AnxietyInputScreenState extends State<AnxietyInputScreen> {
       body: SafeArea(
         child: ListView(
           children: [
-            const ImageBanner(imageSource: 'assets/image/anxiety_character.png'),
+            const ImageBanner(
+              //TODO:imageSource: 'assets/image/anxiety_character.png'
+            ),
             const Padding(
               padding: EdgeInsets.all(AppSizes.padding),
               child: Text.rich(

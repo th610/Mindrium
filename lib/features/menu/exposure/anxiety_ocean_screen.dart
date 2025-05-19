@@ -97,10 +97,7 @@ class _AnxietyOceanScreenState extends State<AnxietyOceanScreen> {
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(AppSizes.borderRadius),
-                  child: Image.asset(
-                    'assets/image/completion.png',
-                    fit: BoxFit.contain,
-                  ),
+                  //TODO:child: Image.asset('assets/image/completion.png',fit: BoxFit.contain,),
                 ),
               ),
               const SizedBox(height: AppSizes.space),

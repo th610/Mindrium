@@ -151,7 +151,7 @@ class _ExposureScreenState extends State<ExposureScreen> {
         child: Column(
           children: [
             const ImageBanner(
-              //imageSource: 'assets/image/mindrium.png',
+              //TODO:imageSource: 'assets/image/mindrium.png',
             ),
             const SizedBox(height: AppSizes.space),
             CardContainer(

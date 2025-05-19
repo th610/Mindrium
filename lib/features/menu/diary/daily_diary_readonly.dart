@@ -34,7 +34,7 @@ class DailyDiaryReadOnly extends StatelessWidget {
             children: [
               // 이미지 배너 (읽기 전용)
               ImageBanner(
-                imageSource: entry.photo?.path ?? 'assets/image/daily_diary.png',
+                //TODO:imageSource: entry.photo?.path ?? 'assets/image/daily_diary.png',
                 fit: BoxFit.cover,
               ),
               const SizedBox(height: AppSizes.space),
