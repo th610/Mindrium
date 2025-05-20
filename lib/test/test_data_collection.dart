@@ -254,7 +254,7 @@ class _EmotionLogFormState extends State<EmotionLogForm> {
                   validator: (value) => value == null || value.isEmpty ? "감정을 입력해주세요" : null,
                 ),
               const SizedBox(height: 16),
-              Text("현재 감정의 Valence(긍정/부정 정도)): ${_beforeValence.toStringAsFixed(1)}", style: labelStyle),
+              Text("현재 감정의 Valence(긍정/부정 정도): ${_beforeValence.toStringAsFixed(1)}", style: labelStyle),
               Slider(
                 value: _beforeValence,
                 min: 0,
@@ -265,7 +265,7 @@ class _EmotionLogFormState extends State<EmotionLogForm> {
                 onChanged: (value) => setState(() => _beforeValence = value),
               ),
               const SizedBox(height: 16),
-              Text("현재 감정의 Arousal(에너지 수준)): ${_beforeArousal.toStringAsFixed(1)}", style: labelStyle),
+              Text("현재 감정의 Arousal(에너지 수준): ${_beforeArousal.toStringAsFixed(1)}", style: labelStyle),
               Slider(
                 value: _beforeArousal,
                 min: 0,
@@ -393,7 +393,7 @@ class _EmotionLogFormState extends State<EmotionLogForm> {
                   validator: (value) => value == null || value.isEmpty ? "감정을 입력해주세요" : null,
                 ),
               const SizedBox(height: 16),
-              Text("수행 후 감정의 Valence(긍정/부정 정도)): ${_afterValence.toStringAsFixed(1)}", style: labelStyle),
+              Text("수행 후 감정의 Valence(긍정/부정 정도): ${_afterValence.toStringAsFixed(1)}", style: labelStyle),
               Slider(
                 value: _afterValence,
                 min: 0,
@@ -404,7 +404,7 @@ class _EmotionLogFormState extends State<EmotionLogForm> {
                 onChanged: (value) => setState(() => _afterValence = value),
               ),
               const SizedBox(height: 16),
-              Text("수행 후 감정의 Arousal(에너지 수준)): ${_afterArousal.toStringAsFixed(1)}", style: labelStyle),
+              Text("수행 후 감정의 Arousal(에너지 수준): ${_afterArousal.toStringAsFixed(1)}", style: labelStyle),
               Slider(
                 value: _afterArousal,
                 min: 0,
