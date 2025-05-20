@@ -44,7 +44,7 @@ class _EmotionLogFormState extends State<EmotionLogForm> {
 
   final List<String> actionOptions = [
     '음료 마시기','공부', '춤', '청소', '심호흡', '산책', '운동', '명상', '게임', '친구와 연락',
-    '운전', '책 읽기', '음악 듣기', '요가', '일기 쓰기', '스트레칭', '요리','쇼핑','','잠자기',
+    '운전', '책 읽기', '음악 듣기', '요가', '일기 쓰기', '스트레칭', '요리','쇼핑','잠자기',
     '기타(직접 입력)'
   ];
 
@@ -276,7 +276,7 @@ class _EmotionLogFormState extends State<EmotionLogForm> {
                 onChanged: (value) => setState(() => _beforeArousal = value),
               ),
               const SizedBox(height: 16),
-              Text("현재 SUD: ${_beforeSud.toStringAsFixed(1)}", style: labelStyle),
+              Text("현재 SUD(스트레스): ${_beforeSud.toStringAsFixed(1)}", style: labelStyle),
               Slider(
                 value: _beforeSud,
                 min: 0,
@@ -415,7 +415,7 @@ class _EmotionLogFormState extends State<EmotionLogForm> {
                 onChanged: (value) => setState(() => _afterArousal = value),
               ),
               const SizedBox(height: 16),
-              Text("수행 후 SUD: ${_afterSud.toStringAsFixed(1)}", style: labelStyle),
+              Text("수행 후 SUD(스트레스): ${_afterSud.toStringAsFixed(1)}", style: labelStyle),
               Slider(
                 value: _afterSud,
                 min: 0,
