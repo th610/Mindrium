@@ -178,7 +178,7 @@ class _EmotionLogFormState extends State<EmotionLogForm> {
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)
                   ),
                   Text(
-                    "5. 수행한 행동의 정적/동적 정도(Physical)와 필요한 집중도(Mental)을 기록합니다",
+                    "5. 수행한 행동의 동적/정적 정도(Physical)와 필요한 집중도(Mental)을 기록합니다",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)
                   ),
                   Text(
