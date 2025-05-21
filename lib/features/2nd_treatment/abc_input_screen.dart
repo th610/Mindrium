@@ -854,10 +854,11 @@ class _AbcInputScreenState extends State<AbcInputScreen> {
                 selected: _selectedSymptoms.contains(s),
                 onSelected: (sel) {
                   setState(() {
-                    if (sel)
+                    if (sel) {
                       _selectedSymptoms.add(s);
-                    else
+                    } else {
                       _selectedSymptoms.remove(s);
+                    }
                   });
                 },
               ),
@@ -882,10 +883,11 @@ class _AbcInputScreenState extends State<AbcInputScreen> {
                 selected: _selectedEmotions.contains(e),
                 onSelected: (sel) {
                   setState(() {
-                    if (sel)
+                    if (sel) {
                       _selectedEmotions.add(e);
-                    else
+                    } else {
                       _selectedEmotions.remove(e);
+                    }
                   });
                 },
               ),
@@ -913,10 +915,11 @@ class _AbcInputScreenState extends State<AbcInputScreen> {
                 selected: _selectedAvoidActions.contains(act),
                 onSelected:
                     (sel) => setState(() {
-                      if (sel)
+                      if (sel) {
                         _selectedAvoidActions.add(act);
-                      else
+                      } else {
                         _selectedAvoidActions.remove(act);
+                      }
                     }),
               ),
             ),
@@ -937,10 +940,11 @@ class _AbcInputScreenState extends State<AbcInputScreen> {
                 selected: _selectedPrepareActions.contains(act),
                 onSelected:
                     (sel) => setState(() {
-                      if (sel)
+                      if (sel) {
                         _selectedPrepareActions.add(act);
-                      else
+                      } else {
                         _selectedPrepareActions.remove(act);
+                      }
                     }),
               ),
             ),
@@ -961,10 +965,11 @@ class _AbcInputScreenState extends State<AbcInputScreen> {
                 selected: _selectedCheckActions.contains(act),
                 onSelected:
                     (sel) => setState(() {
-                      if (sel)
+                      if (sel) {
                         _selectedCheckActions.add(act);
-                      else
+                      } else {
                         _selectedCheckActions.remove(act);
+                      }
                     }),
               ),
             ),
@@ -1165,7 +1170,7 @@ class AbcVisualizationScreen extends StatefulWidget {
   final List<String>? checkActions;
 
   const AbcVisualizationScreen({
-    Key? key,
+    super.key,
     required this.activatingEvent,
     required this.belief,
     required this.consequence,
@@ -1176,7 +1181,7 @@ class AbcVisualizationScreen extends StatefulWidget {
     this.avoidActions,
     this.prepareActions,
     this.checkActions,
-  }) : super(key: key);
+  });
 
   @override
   _AbcVisualizationScreenState createState() => _AbcVisualizationScreenState();
