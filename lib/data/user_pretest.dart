@@ -22,6 +22,8 @@ class UserDatabase {
     String? otherWorry,
     required String? sleepHours,
     required String? sleepQuality,
+    List<String>? faceSelected,
+    List<String>? avoidSelected,
   }) async {
     if (_uid == null) return;
 
@@ -30,6 +32,8 @@ class UserDatabase {
       'otherWorry': otherWorry,
       'sleepHours': sleepHours,
       'sleepQuality': sleepQuality,
+      'faceSelected': faceSelected ?? [],
+      'avoidSelected': avoidSelected ?? [],
       'timestamp': FieldValue.serverTimestamp(),
     };
 

@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:gad_app_team/common/constants.dart';
-import 'package:gad_app_team/data/user_pretest.dart';
 import 'package:gad_app_team/widgets/navigation_button.dart';
+import 'face_or_avoid_screen.dart';
 
 /// 수면 건강 상태 사전 조사 화면
 class PreTestScreen extends StatefulWidget {
-  const PreTestScreen({super.key});
+  final int initialStep;
+  const PreTestScreen({super.key, this.initialStep = 0});
 
   @override
   State<PreTestScreen> createState() => _PreTestScreenState();
 }
 
 class _PreTestScreenState extends State<PreTestScreen> {
-  int step = 0;
+  late int step;
   final TextEditingController otherController = TextEditingController();
 
   final List<String> worries = [
@@ -32,6 +33,12 @@ class _PreTestScreenState extends State<PreTestScreen> {
   String? selectedSleepHours;
   String? selectedSleepQuality;
 
+  @override
+  void initState() {
+    super.initState();
+    step = widget.initialStep;
+  }
+
   void toggleWorryOption(String option) {
     setState(() {
       selectedWorries.contains(option)
@@ -46,23 +53,32 @@ class _PreTestScreenState extends State<PreTestScreen> {
     required void Function(String) onSelected,
   }) {
     return Column(
-      children: options
+      children:
+          options
           .map(
             (option) => CheckboxListTile(
               value: selected == option,
               onChanged: (_) => onSelected(option),
-              title: Text(option, style: const TextStyle(fontSize: AppSizes.fontSize)),
+                  title: Text(
+                    option,
+                    style: const TextStyle(fontSize: AppSizes.fontSize),
+                  ),
               controlAffinity: ListTileControlAffinity.leading,
               dense: true,
               visualDensity: const VisualDensity(vertical: -2),
-              shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.zero,
+                  ),
             ),
           )
           .toList(),
     );
   }
 
-  Widget _buildTextField({required TextEditingController controller, required String label}) {
+  Widget _buildTextField({
+    required TextEditingController controller,
+    required String label,
+  }) {
     return TextField(
       controller: controller,
       decoration: InputDecoration(
@@ -86,9 +102,19 @@ class _PreTestScreenState extends State<PreTestScreen> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Icon(Icons.description_outlined, size: 100, color: AppColors.indigo),
+        const Icon(
+          Icons.description_outlined,
+          size: 100,
+          color: AppColors.indigo,
+        ),
         const SizedBox(height: AppSizes.space),
-        const Text('건강 상태 조사', style: TextStyle(fontSize: AppSizes.fontSize, fontWeight: FontWeight.bold)),
+        const Text(
+          '건강 상태 조사',
+          style: TextStyle(
+            fontSize: AppSizes.fontSize,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         const SizedBox(height: AppSizes.space),
         const Text(
           '건강 상태를 점검하기 위한 설문을 시작할게요.\n'
@@ -104,9 +130,14 @@ class _PreTestScreenState extends State<PreTestScreen> {
           style: FilledButton.styleFrom(
             backgroundColor: Colors.indigo,
             minimumSize: const Size(140, 50),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSizes.borderRadius)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(AppSizes.borderRadius),
+            ),
           ),
-          child: const Text('시작하기', style: TextStyle(fontSize: AppSizes.fontSize)),
+          child: const Text(
+            '시작하기',
+            style: TextStyle(fontSize: AppSizes.fontSize),
+          ),
         ),
       ],
     );
@@ -117,24 +148,41 @@ class _PreTestScreenState extends State<PreTestScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: AppSizes.space),
-        const Text('생각', style: TextStyle(fontSize: AppSizes.fontSize, fontWeight: FontWeight.bold)),
-        const Text('당신의 마음 속에 어떤 걱정이 있나요?', style: TextStyle(fontSize: AppSizes.fontSize)),
+        const Text(
+          '생각',
+          style: TextStyle(
+            fontSize: AppSizes.fontSize,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const Text(
+          '당신의 마음 속에 어떤 걱정이 있나요?',
+          style: TextStyle(fontSize: AppSizes.fontSize),
+        ),
         const SizedBox(height: AppSizes.space),
         ...worries.map(
           (option) => CheckboxListTile(
             value: selectedWorries.contains(option),
             onChanged: (_) => toggleWorryOption(option),
-            title: Text(option, style: const TextStyle(fontSize: AppSizes.fontSize)),
+            title: Text(
+              option,
+              style: const TextStyle(fontSize: AppSizes.fontSize),
+            ),
             controlAffinity: ListTileControlAffinity.leading,
             dense: true,
             visualDensity: const VisualDensity(vertical: -2),
-            shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.zero,
+            ),
           ),
         ),
         CheckboxListTile(
           value: otherSelected,
           onChanged: (v) => setState(() => otherSelected = v ?? false),
-          title: const Text('기타', style: TextStyle(fontSize: AppSizes.fontSize)),
+          title: const Text(
+            '기타',
+            style: TextStyle(fontSize: AppSizes.fontSize),
+          ),
           controlAffinity: ListTileControlAffinity.leading,
           dense: true,
           visualDensity: const VisualDensity(vertical: -2),
@@ -146,7 +194,10 @@ class _PreTestScreenState extends State<PreTestScreen> {
             child: _buildTextField(controller: otherController, label: '기타 사항'),
           ),
         const Spacer(),
-        NavigationButtons(onNext: () => setState(() => step = 2), onBack: () => setState(() => step = 0)),
+        NavigationButtons(
+          onNext: () => setState(() => step = 2),
+          onBack: () => setState(() => step = 0),
+        ),
       ],
     );
   }
@@ -156,8 +207,17 @@ class _PreTestScreenState extends State<PreTestScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: AppSizes.space),
-        const Text('수면 시간', style: TextStyle(fontSize: AppSizes.fontSize, fontWeight: FontWeight.bold)),
-        const Text('하루 평균 수면 시간은 얼마나 되나요?', style: TextStyle(fontSize: AppSizes.fontSize)),
+        const Text(
+          '수면 시간',
+          style: TextStyle(
+            fontSize: AppSizes.fontSize,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const Text(
+          '하루 평균 수면 시간은 얼마나 되나요?',
+          style: TextStyle(fontSize: AppSizes.fontSize),
+        ),
         const SizedBox(height: AppSizes.space),
         _buildCheckboxList(
           options: sleepOptions,
@@ -165,7 +225,10 @@ class _PreTestScreenState extends State<PreTestScreen> {
           onSelected: (val) => setState(() => selectedSleepHours = val),
         ),
         const Spacer(),
-        NavigationButtons(onNext: () => setState(() => step = 3), onBack: () => setState(() => step = 1)),
+        NavigationButtons(
+          onNext: () => setState(() => step = 3),
+          onBack: () => setState(() => step = 1),
+        ),
       ],
     );
   }
@@ -175,8 +238,17 @@ class _PreTestScreenState extends State<PreTestScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: AppSizes.space),
-        const Text('수면의 질', style: TextStyle(fontSize: AppSizes.fontSize, fontWeight: FontWeight.bold)),
-        const Text('최근 일주일 간 수면의 질은 어떤가요?', style: TextStyle(fontSize: AppSizes.fontSize)),
+        const Text(
+          '수면의 질',
+          style: TextStyle(
+            fontSize: AppSizes.fontSize,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const Text(
+          '최근 일주일 간 수면의 질은 어떤가요?',
+          style: TextStyle(fontSize: AppSizes.fontSize),
+        ),
         const SizedBox(height: AppSizes.space),
         _buildCheckboxList(
           options: qualityOptions,
@@ -184,25 +256,25 @@ class _PreTestScreenState extends State<PreTestScreen> {
           onSelected: (val) => setState(() => selectedSleepQuality = val),
         ),
         const Spacer(),
-        NavigationButtons(onNext: () => setState(() => step = 4), onBack: () => setState(() => step = 2)),
+        NavigationButtons(
+          onNext: () => setState(() => step = 4),
+          onBack: () => setState(() => step = 2),
+        ),
       ],
     );
   }
 
   Widget buildResultPage() {
-    Future.microtask(() {
-      UserDatabase.saveSurveyResult(
-        worries: selectedWorries,
-        otherWorry: otherSelected ? otherController.text.trim() : null,
-        sleepHours: selectedSleepHours,
-        sleepQuality: selectedSleepQuality,
-      );
-    });
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('불안증상 검사결과', style: TextStyle(fontSize: AppSizes.fontSize, fontWeight: FontWeight.bold)),
+        const Text(
+          '불안증상 검사결과',
+          style: TextStyle(
+            fontSize: AppSizes.fontSize,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         const SizedBox(height: AppSizes.space),
         Container(
           padding: const EdgeInsets.all(AppSizes.padding),
@@ -219,17 +291,23 @@ class _PreTestScreenState extends State<PreTestScreen> {
           ),
         ),
         const Spacer(),
-        SizedBox(
-          width: double.infinity,
-          child: FilledButton(
-            onPressed: () => Navigator.pushReplacementNamed(context, '/home'),
-            style: FilledButton.styleFrom(
-              backgroundColor: Colors.indigo,
-              minimumSize: const Size.fromHeight(50),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSizes.borderRadius)),
-            ),
-            child: const Text('홈으로 돌아가기'),
-          ),
+        NavigationButtons(
+          onNext: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder:
+                    (_) => FaceOrAvoidScreen(
+                      worries: selectedWorries,
+                      otherWorry:
+                          otherSelected ? otherController.text.trim() : null,
+                      sleepHours: selectedSleepHours,
+                      sleepQuality: selectedSleepQuality,
+                    ),
+              ),
+            );
+          },
+          onBack: () => setState(() => step = 3),
         ),
       ],
     );

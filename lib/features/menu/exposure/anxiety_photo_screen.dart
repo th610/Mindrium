@@ -160,7 +160,7 @@ class _AnxietyPhotoScreenState extends State<AnxietyPhotoScreen> {
           padding: const EdgeInsets.all(AppSizes.padding),
           children: [
             const ImageBanner(
-              //TODO:imageSource: 'assets/image/photo.png'
+              imageSource: 'assets/image/photo.png'
               ),
                   Wrap(
                     crossAxisAlignment: WrapCrossAlignment.center,

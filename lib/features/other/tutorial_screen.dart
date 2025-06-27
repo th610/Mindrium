@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gad_app_team/common/constants.dart';
+import 'package:gad_app_team/data/user_pretest.dart';
 import 'package:gad_app_team/widgets/primary_action_button.dart';
 
 /// 앱 사용법을 안내하는 튜토리얼 화면
@@ -36,20 +37,16 @@ class _TutorialScreenState extends State<TutorialScreen> {
     if (_currentIndex < tutorialPages.length - 1) {
       _controller.nextPage(duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
     } else {
-      //TODO
-      //final hasSurvey = await UserDatabase.hasCompletedSurvey();
+      final hasSurvey = await UserDatabase.hasCompletedSurvey();
       if (!mounted) return;
-      Navigator.pushReplacementNamed(context, '/home');
-      //Navigator.pushReplacementNamed(context, hasSurvey ? '/home' : '/pretest');
+      Navigator.pushReplacementNamed(context, hasSurvey ? '/home' : '/pretest');
     }
   }
 
   Future<void> _skipTutorial() async {
-    //TODO
-    //final hasSurvey = await UserDatabase.hasCompletedSurvey();
+    final hasSurvey = await UserDatabase.hasCompletedSurvey();
     if (!mounted) return;
-    Navigator.pushReplacementNamed(context, '/home');
-    //Navigator.pushReplacementNamed(context, hasSurvey ? '/home' : '/pretest');
+    Navigator.pushReplacementNamed(context, hasSurvey ? '/home' : '/pretest');
   }
 
   @override

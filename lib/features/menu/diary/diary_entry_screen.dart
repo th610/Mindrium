@@ -19,7 +19,7 @@ class DiaryEntryScreen extends StatelessWidget {
         child: Column(
           children: [
             ImageBanner(
-              //TODO:imageSource: 'assets/image/mindrium.png',
+              imageSource: 'assets/image/mindrium.png',
             ),
             const SizedBox(height: AppSizes.space),
             CardContainer(

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gad_app_team/common/constants.dart';
-import 'package:gad_app_team/widgets/activitiy_card.dart';
 import 'package:intl/intl.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:provider/provider.dart';
@@ -16,8 +15,6 @@ import 'treatment_screen.dart';
 import 'mindrium_screen.dart';
 import 'report_screen.dart';
 import 'myinfo_screen.dart';
-
-import 'package:gad_app_team/test/test_data_collection.dart';
 
 /// 홈 화면
 class HomeScreen extends StatefulWidget {
@@ -78,15 +75,12 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _homePage() {
-    final userId = context.watch<UserProvider>().userId; //데이터 수집
     return SafeArea(
       child: ListView(
         padding: const EdgeInsets.symmetric(horizontal:AppSizes.padding),
         children: [
           _buildHeader(),
           const SizedBox(height: AppSizes.space),
-          _dataCollection(context, userId),    //데이터 수집
-          const SizedBox(height: AppSizes.space),//데이터 수집
           _buildReportSummary(),
           const SizedBox(height: AppSizes.space),
           _buildTodayTasks(),
@@ -206,23 +200,6 @@ class _HomeScreenState extends State<HomeScreen> {
           const Text('이번 주 평균 불안감: 5.1점', style: TextStyle(color: AppColors.grey)),
         ],
       ),
-    );
-  }
-
-//데이터 수집
-  Widget _dataCollection(BuildContext context, String userId) {
-    return ActivityCard(
-      title: '설문: 감정-행동 기록',
-      icon: Icons.description,
-      enabled: true,
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => EmotionLogForm(userId: userId),
-          ),
-        );
-      },
     );
   }
 }

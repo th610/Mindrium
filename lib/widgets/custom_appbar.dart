@@ -7,6 +7,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final VoidCallback? onBack;
   final VoidCallback? onHomePressed;
 
+  /// 홈 버튼 표시 여부
+  final bool showHome;
+
   /// 조건부 팝업 설정
   final bool confirmOnBack;
   final bool confirmOnHome;
@@ -20,6 +23,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.leadingIcon,
     this.onBack,
     this.onHomePressed,
+    this.showHome = true,
     this.confirmOnBack = false,
     this.confirmOnHome = false,
     this.backgroundColor = AppColors.white, // 기본 배경색
@@ -50,7 +54,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: backgroundColor,
       leading: Padding(
-        padding: const EdgeInsets.fromLTRB(16,0,0,0),
+        padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
         child: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new),
           onPressed: () async {
@@ -76,24 +80,29 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         ],
       ),
       actions: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(0,0,16,0),
-          child: IconButton(
-            icon: const Icon(Icons.home_outlined, color: AppColors.black),
-            onPressed: () async {
-              if (confirmOnHome) {
-                final confirmed = await _confirmExit(context);
-                if (!confirmed) return;
-                if (!context.mounted) return;
-              }
-              if (onHomePressed != null) {
-                onHomePressed!();
-              } else {
-                Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
-              }
-            },
+        if (showHome)
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 0, 16, 0),
+            child: IconButton(
+              icon: const Icon(Icons.home_outlined, color: AppColors.black),
+              onPressed: () async {
+                if (confirmOnHome) {
+                  final confirmed = await _confirmExit(context);
+                  if (!confirmed) return;
+                  if (!context.mounted) return;
+                }
+                if (onHomePressed != null) {
+                  onHomePressed!();
+                } else {
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    '/home',
+                    (route) => false,
+                  );
+                }
+              },
+            ),
           ),
-        ),
       ],
     );
   }

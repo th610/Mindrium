@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:gad_app_team/common/constants.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:gad_app_team/features/2nd_treatment/abc_guide_screen.dart';
+
+//notification
+import 'package:gad_app_team/features/menu/notification/notification_directory_screen.dart';
+import 'package:gad_app_team/features/menu/notification/notification_selection_screen.dart';
 
 //treatment
-import 'package:gad_app_team/features/1st_treatment/week1_screen.dart'; 
+import 'package:gad_app_team/features/1st_treatment/week1_screen.dart'; //1주차
+import 'package:gad_app_team/features/2nd_treatment/abc_input_screen.dart'; //2주차
+  
 
-import 'package:gad_app_team/features/2nd_treatment/week2_screen.dart';
-import 'package:gad_app_team/features/2nd_treatment/abc_input_screen.dart';
-
-import 'package:gad_app_team/features/3rd_treatment/week3_screen.dart';  
-import 'package:gad_app_team/features/3rd_treatment/habit_1.dart'; 
-import 'package:gad_app_team/features/3rd_treatment/habit_2.dart'; 
-import 'package:gad_app_team/features/3rd_treatment/habit_3.dart';
-import 'package:gad_app_team/features/3rd_treatment/habit_4.dart';  
-import 'package:gad_app_team/features/3rd_treatment/habit_5.dart';
-import 'package:gad_app_team/features/3rd_treatment/habit_6.dart'; 
 
 // Feature imports
 import 'package:gad_app_team/features/auth/login_screen.dart';
@@ -54,6 +51,7 @@ import 'package:gad_app_team/navigation/screen/myinfo_screen.dart';
 import 'package:gad_app_team/navigation/screen/report_screen.dart';
 import 'package:gad_app_team/navigation/screen/treatment_screen.dart';
 
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 /// Mindrium 메인 앱 클래스
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -61,6 +59,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: navigatorKey, 
       debugShowCheckedModeBanner: false,
       title: 'Mindrium',
       theme: ThemeData(
@@ -121,17 +120,14 @@ class MyApp extends StatelessWidget {
 
         //treatment
         '/week1': (context) => const Week1Screen(),
-        
-        '/week2': (context) => const Week2Screen(),
+        '/week2': (context) => const AbcGuideScreen(),
         '/abc': (context) => const AbcInputScreen(),
-        
-        '/week3': (context) => const Week3Screen(),
-        '/habit1': (context) => Habit1Page(),
-        '/habit2': (context) => Habit2Page(),
-        '/habit3': (context) => Habit3Page(),
-        '/habit4': (context) => Habit4Page(),
-        '/habit5': (context) => Habit5Page(),
-        '/habit6': (context) => Habit6Page(),
+      
+
+        //notification
+        '/noti_select': (context) => NotificationSelectionScreen(),
+        '/notification': (context) => NotificationDirectoryScreen(),
+
       },
     );
   }

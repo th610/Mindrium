@@ -68,7 +68,7 @@ class _WeeklyDiaryScreen1State extends State<WeeklyDiaryScreen1> {
             children: [
               // 기본 앱 이미지
               ImageBanner(
-                //TODO:imageSource: 'assets/image/weekly_diary.png',
+                imageSource: 'assets/image/weekly_diary.png',
                 height: MediaQuery.of(context).size.width * 9 / 16,
                 fit: BoxFit.cover,
               ),

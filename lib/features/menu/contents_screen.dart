@@ -111,6 +111,13 @@ class _ContentScreenState extends State<ContentScreen> {
               enabled: true,
               onTap: () => Navigator.pushNamed(context,'/calendar'),
             ),
+            const SizedBox(height: AppSizes.space),
+            ActivityCard(
+              icon: Icons.alarm,
+              title: '알림',
+              enabled: true,
+              onTap: () => Navigator.pushNamed(context,'/notification'),
+            ),
           ],
         ),
       ),

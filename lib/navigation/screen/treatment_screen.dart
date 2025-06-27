@@ -7,7 +7,7 @@ import 'package:gad_app_team/widgets/card_container.dart';
 import 'package:gad_app_team/data/daycounter.dart';
 
 import 'package:gad_app_team/features/1st_treatment/week1_screen.dart';
-import 'package:gad_app_team/features/2nd_treatment/week2_screen.dart';
+import 'package:gad_app_team/features/2nd_treatment/abc_input_screen.dart';
 import 'package:gad_app_team/features/3rd_treatment/week3_screen.dart';
 
 /// Mindrium 치료 프로그램 메인 화면
@@ -28,7 +28,6 @@ class TreatmentScreen extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: AppSizes.padding),
       child: CardContainer(
         title: '진행 상황',
-        crossAxisAlignment: CrossAxisAlignment.start,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -59,20 +58,20 @@ class TreatmentScreen extends StatelessWidget {
 
     // 주차별 콘텐츠 정보
     final List<Map<String, String>> weekContents = [
-      {'title': '1주차', 'subtitle': '공통 활동 교육'},
-      {'title': '2주차', 'subtitle': 'ABC 모델 / SMART 목표'},
-      {'title': '3주차', 'subtitle': '건강한 생활 습관'},
-      {'title': '4주차', 'subtitle': '걱정에 대한 믿음 탐구'},
-      {'title': '5주차', 'subtitle': '걱정에 대한 믿음 수정'},
-      {'title': '6주차', 'subtitle': '인지 재구성 (1)'},
-      {'title': '7주차', 'subtitle': '인지 재구성 (2) - 문제해결'},
-      {'title': '8주차', 'subtitle': '재발 방지 교육'},
+      {'title': '1주차', 'subtitle': '불안에 대한 교육'},
+      {'title': '2주차', 'subtitle': 'ABC 걱정일기'},
+      {'title': '3주차', 'subtitle': 'Self Talk'},
+      {'title': '4주차', 'subtitle': '인지 왜곡 찾기'},
+      {'title': '5주차', 'subtitle': '불안 직면 VS 회피'},
+      {'title': '6주차', 'subtitle': '불안 직면 VS 회피'},
+      {'title': '7주차', 'subtitle': '생활 습관 개선'},
+      {'title': '8주차', 'subtitle': '인지 재구성'},
     ];
 
     // 주차별 연결된 화면 (추후 주차별로 추가 가능)
     final List<Widget> weekScreens = const [
       Week1Screen(),
-      Week2Screen(),
+      AbcInputScreen(),
       Week3Screen(),
       // ...
     ];
@@ -93,7 +92,10 @@ class TreatmentScreen extends StatelessWidget {
                 ),
                 Text(
                   '주차 별 프로그램을 진행해 주세요',
-                  style: TextStyle(fontSize: AppSizes.fontSize, color: Colors.grey),
+                  style: TextStyle(
+                    fontSize: AppSizes.fontSize,
+                    color: Colors.grey,
+                  ),
                 ),
                 SizedBox(height: AppSizes.space),
               ],
@@ -106,19 +108,24 @@ class TreatmentScreen extends StatelessWidget {
 
           // 주차별 카드 리스트
           ...List.generate(weekContents.length, (index) {
-            //final isEnabled = index < week;
+            final isEnabled = index < week;
             return Column(
               children: [
                 ActivityCard(
                   icon: Icons.lightbulb_outline,
                   title: weekContents[index]['title']!,
                   subtitle: weekContents[index]['subtitle']!,
-                  enabled: true, //isEnabled,
+                  enabled: isEnabled,
                   titleFontWeight: FontWeight.bold,
-                  onTap: () => Navigator.pushNamed(context, '/week${index + 1}')
-                    /*isEnabled && index < weekScreens.length
-                      ? () => Navigator.pushNamed(context, '/week${index + 1}')
-                      : null,*/
+                  onTap:
+                      isEnabled && index < weekScreens.length
+                          ? () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => weekScreens[index],
+                            ),
+                          )
+                          : null,
                 ),
                 const SizedBox(height: AppSizes.space),
               ],
